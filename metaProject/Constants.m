@@ -17,6 +17,8 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.text = @"";
+        cell.detailTextLabel.text = @"";
     }
     return cell;
 }

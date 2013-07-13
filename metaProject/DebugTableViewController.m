@@ -31,6 +31,14 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (UITableViewCell *)cellWithText:(NSString *)text detailText:(NSString *)detail
+{
+    UITableViewCell *cell = [UITableViewCell emptyCellForTableView:self.tableView];
+    cell.textLabel.text = text ? text : @"N/A";
+    cell.detailTextLabel.text = detail ? detail : @"N/A";
+    return cell;
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -42,39 +50,19 @@
     NSString *infoPlistPath = [NSBundle.mainBundle pathForResource:@"debugInfo" ofType:@"plist"];
     NSDictionary *dbInfo = [NSDictionary dictionaryWithContentsOfFile:infoPlistPath];
     
-    NSString *commitStr = [dbInfo objectForKey:@"CommitHash"];
-    if (commitStr.length == 0)
-        commitStr = @"N/A";        
+    [self.infoArray addObject:[self cellWithText:@"Commit hash:" detailText:[dbInfo objectForKey:@"CommitHash"]]];
+    [self.infoArray addObject:[self cellWithText:@"Commit date:" detailText:[dbInfo objectForKey:@"CommitDate"]]];
+    [self.infoArray addObject:[self cellWithText:@"Committer name:" detailText:[dbInfo objectForKey:@"CommitterName"]]];
+    [self.infoArray addObject:[self cellWithText:@"Committer email:" detailText:[dbInfo objectForKey:@"CommitterEmail"]]];
+    [self.infoArray addObject:[self cellWithText:@"Branch status:" detailText:[dbInfo objectForKey:@"BranchStatus"]]];
+    [self.infoArray addObject:[self cellWithText:@"Release notices:" detailText:@""]];
     
-    UITableViewCell *commitHashCell = [UITableViewCell emptyCellForTableView:self.tableView];
-    commitHashCell.textLabel.text = @"Commit hash:";
-    commitHashCell.detailTextLabel.text = commitStr;
+    NSArray *notices = [dbInfo objectForKey:@"Notices"];
     
-    [self.infoArray addObject:commitHashCell];
+    for (NSString* s in notices)
+        [self.infoArray addObject:[self cellWithText:@"" detailText:s]];   
     
-    UITableViewCell *committerNameCell = [UITableViewCell emptyCellForTableView:self.tableView];
-    committerNameCell.textLabel.text = @"Committer name:";
-    committerNameCell.detailTextLabel.text = [dbInfo objectForKey:@"CommitterName"];
-    
-    [self.infoArray addObject:committerNameCell];
-    
-    UITableViewCell *committerEmailCell = [UITableViewCell emptyCellForTableView:self.tableView];
-    committerEmailCell.textLabel.text = @"Committer email:";
-    committerEmailCell.detailTextLabel.text = [dbInfo objectForKey:@"CommitterEmail"];
-    
-    [self.infoArray addObject:committerEmailCell];
-    
-    UITableViewCell *buildTimeCell = [UITableViewCell emptyCellForTableView:self.tableView];
-    buildTimeCell.textLabel.text = @"Build time:";
-    buildTimeCell.detailTextLabel.text = [dbInfo objectForKey:@"BuildTime"];
-    
-    [self.infoArray addObject:buildTimeCell];
-    
-    UITableViewCell *branchStatusCell = [UITableViewCell emptyCellForTableView:self.tableView];
-    branchStatusCell.textLabel.text = @"Branch status:";
-    branchStatusCell.detailTextLabel.text = [dbInfo objectForKey:@"BranchStatus"];
-    
-    [self.infoArray addObject:branchStatusCell];    
+    [self.infoArray addObject:[self cellWithText:@"Build time:" detailText:[dbInfo objectForKey:@"BuildTime"]]];
 }
 
 - (void)viewDidUnload

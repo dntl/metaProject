@@ -1,6 +1,7 @@
 #!/bin/sh
 
 commit=$(git log --pretty=format:'%H' -n 1)
+commit_date='<key>CommitDate</key><string>'$(git log -n 1 --format='%cd')'</string>'
 
 build_tags=( $(git tag | grep "build_\.*") )
 
@@ -48,6 +49,6 @@ else
 	isClean='<key>BranchStatus</key><string>Clean</string>'
 fi
 
-echo $xml_head'<dict><key>CommitHash</key><string>'$commit'</string>'$committer_name$committer_email$build_time$isClean$notices_array'</dict></plist>'  | xmllint --format -  >debugInfo.plist
+echo $xml_head'<dict><key>CommitHash</key><string>'$commit'</string>'$commit_date$committer_name$committer_email$build_time$isClean$notices_array'</dict></plist>'  | xmllint --format -  >debugInfo.plist
 
 cp debugInfo.plist ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/debugInfo.plist
