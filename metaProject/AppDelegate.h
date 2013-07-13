@@ -6,14 +6,12 @@
 //  Copyright (c) 2013 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-@class ViewController;
+@class DebugTableViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) ViewController *viewController;
+@property (strong, nonatomic) DebugTableViewController *debugTableViewController;
+@property (strong, nonatomic) UINavigationController *debugNC;
 
 @end

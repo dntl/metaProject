@@ -7,20 +7,23 @@
 //
 
 #import "AppDelegate.h"
-
-#import "ViewController.h"
+#import "DebugTableViewController.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize viewController = _viewController;
+@synthesize debugTableViewController = _debugTableViewController;
+@synthesize debugNC = _debugNC;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen.mainScreen bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
+    self.debugTableViewController = [DebugTableViewController new];
+    
+    self.debugNC = [[UINavigationController alloc] initWithRootViewController:self.debugTableViewController];
+    
+    self.window.rootViewController = self.debugNC;
     [self.window makeKeyAndVisible];
     return YES;
 }
