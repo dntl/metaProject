@@ -19,6 +19,10 @@ if [ $from = $to ]; then
 	notices[0]=$from
 else
 	notices=( $(git log $from...$to --format=%H) )
+	
+	if [ $to = $(git rev-list --max-parents=0 HEAD) ]; then
+		notices=(${notices[@]} $to)
+	fi
 fi
 
 notices_array='<key>Notices</key><array>'
