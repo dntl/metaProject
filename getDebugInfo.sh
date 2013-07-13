@@ -8,17 +8,17 @@ from=$commit
 to=$(git rev-list --max-parents=0 HEAD)
 
 if [ ${#build_tags[@]} -gt 0 ]; then
-	from=$(git log ${build_tags[0]})
+	from=$(git log ${build_tags[0]} -n 1 --format='%H')
 fi
 
 if [ ${#build_tags[@]} -gt 1 ]; then
-	to=$(git log ${build_tags[1]})
+	to=$(git log ${build_tags[1]} -n 1 --format='%H')
 fi	
 
 if [ $from = $to ]; then
 	notices[0]=$from
 else
-	notices=( $(git log $from...$to --format=%H) )
+	notices=( $(git log $from...$to --format='%H') )
 	
 	if [ $to = $(git rev-list --max-parents=0 HEAD) ]; then
 		notices=(${notices[@]} $to)
