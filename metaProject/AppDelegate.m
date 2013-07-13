@@ -1,3 +1,4 @@
+//==============================================================================
 //
 //  AppDelegate.m
 //  metaProject
@@ -5,15 +6,23 @@
 //  Created by dimakey on 13.07.13.
 //  Copyright (c) 2013 __MyCompanyName__. All rights reserved.
 //
+//==============================================================================
 
 #import "AppDelegate.h"
 #import "DebugTableViewController.h"
 
+//==============================================================================
+
 @implementation AppDelegate
+
+//==============================================================================
 
 @synthesize window = _window;
 @synthesize debugTableViewController = _debugTableViewController;
 @synthesize debugNC = _debugNC;
+
+//==============================================================================
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -28,6 +37,10 @@
     return YES;
 }
 
+
+//==============================================================================
+
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*
@@ -35,6 +48,10 @@
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
 }
+
+
+//==============================================================================
+
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
@@ -44,6 +61,10 @@
      */
 }
 
+
+//==============================================================================
+
+
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     /*
@@ -51,12 +72,20 @@
      */
 }
 
+
+//==============================================================================
+
+
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
 }
+
+
+//==============================================================================
+
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
@@ -66,5 +95,8 @@
      See also applicationDidEnterBackground:.
      */
 }
+
+
+//==============================================================================
 
 @end
