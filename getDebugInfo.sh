@@ -39,7 +39,7 @@ xml_head='<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple
 
 committer_name='<key>CommitterName</key><string>'$(git config user.name)'</string>'
 committer_email='<key>CommitterEmail</key><string>'$(git config user.email)'</string>'
-build_time='<key>BuildTime</key><string>'$(date +"%Y-%m-%d %H:%M")'</string>'
+build_time='<key>BuildTime</key><string>'$(date +"%Y-%m-%d %H:%M:%S")'</string>'
 
 echo $xml_head'<dict><key>CommitHash</key><string>'$commit'</string>'$committer_name$committer_email$build_time$notices_array'</dict></plist>'  | xmllint --format -  >debugInfo.plist
 
