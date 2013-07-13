@@ -5,7 +5,7 @@ commit=$(git log --pretty=format:'%H' -n 1)
 build_tags=( $(git tag | grep "build_\.*") )
 
 from=$commit
-to=$(git log --reverse --pretty=format:'%H' -n 1)
+to=$(git rev-list --max-parents=0 HEAD)
 
 if [ ${#build_tags[@]} -gt 0 ]; then
 	from=$(git log ${build_tags[0]})
@@ -18,7 +18,7 @@ fi
 if [ $from = $to ]; then
 	notices[0]=$from
 else
-notices=( $(git log $from...$to --format=%H) )
+	notices=( $(git log $from...$to --format=%H) )
 fi
 
 notices_array='<key>Notices</key><array>'
