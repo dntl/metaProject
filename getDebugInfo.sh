@@ -41,6 +41,13 @@ committer_name='<key>CommitterName</key><string>'$(git config user.name)'</strin
 committer_email='<key>CommitterEmail</key><string>'$(git config user.email)'</string>'
 build_time='<key>BuildTime</key><string>'$(date +"%Y-%m-%d %H:%M:%S")'</string>'
 
-echo $xml_head'<dict><key>CommitHash</key><string>'$commit'</string>'$committer_name$committer_email$build_time$notices_array'</dict></plist>'  | xmllint --format -  >debugInfo.plist
+diff=$(git status --porcelain)
+if [ ${#diff} -gt 0 ]; then
+	isClean='<key>BranchStatus</key><string>Not clean</string>'
+else
+	isClean='<key>BranchStatus</key><string>Clean</string>'
+fi
+
+echo $xml_head'<dict><key>CommitHash</key><string>'$commit'</string>'$committer_name$committer_email$build_time$isClean$notices_array'</dict></plist>'  | xmllint --format -  >debugInfo.plist
 
 cp debugInfo.plist ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/debugInfo.plist

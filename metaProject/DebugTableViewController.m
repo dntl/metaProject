@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 __MyCompanyName__. All rights reserved.
 //
 
+
 #import "DebugTableViewController.h"
 
 @implementation DebugTableViewController
@@ -69,7 +70,11 @@
     
     [self.infoArray addObject:buildTimeCell];
     
+    UITableViewCell *branchStatusCell = [UITableViewCell emptyCellForTableView:self.tableView];
+    branchStatusCell.textLabel.text = @"Branch status:";
+    branchStatusCell.detailTextLabel.text = [dbInfo objectForKey:@"BranchStatus"];
     
+    [self.infoArray addObject:branchStatusCell];    
 }
 
 - (void)viewDidUnload
