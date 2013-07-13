@@ -8,7 +8,6 @@
 
 #import "DebugTableViewController.h"
 
-
 @implementation DebugTableViewController
 
 @synthesize infoArray = _infoArray;
@@ -41,11 +40,36 @@
     
     NSString *infoPlistPath = [NSBundle.mainBundle pathForResource:@"debugInfo" ofType:@"plist"];
     NSDictionary *dbInfo = [NSDictionary dictionaryWithContentsOfFile:infoPlistPath];
+    
     NSString *commitStr = [dbInfo objectForKey:@"CommitHash"];
     if (commitStr.length == 0)
-        commitStr = @"N/A";
+        commitStr = @"N/A";        
     
-    [self.infoArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:commitStr, @"detailText", @"Commit hash:", @"text", nil]];
+    UITableViewCell *commitHashCell = [UITableViewCell emptyCellForTableView:self.tableView];
+    commitHashCell.textLabel.text = @"Commit hash:";
+    commitHashCell.detailTextLabel.text = commitStr;
+    
+    [self.infoArray addObject:commitHashCell];
+    
+    UITableViewCell *committerNameCell = [UITableViewCell emptyCellForTableView:self.tableView];
+    committerNameCell.textLabel.text = @"Committer name:";
+    committerNameCell.detailTextLabel.text = [dbInfo objectForKey:@"CommitterName"];
+    
+    [self.infoArray addObject:committerNameCell];
+    
+    UITableViewCell *committerEmailCell = [UITableViewCell emptyCellForTableView:self.tableView];
+    committerEmailCell.textLabel.text = @"Committer email:";
+    committerEmailCell.detailTextLabel.text = [dbInfo objectForKey:@"CommitterEmail"];
+    
+    [self.infoArray addObject:committerEmailCell];
+    
+    UITableViewCell *buildTimeCell = [UITableViewCell emptyCellForTableView:self.tableView];
+    buildTimeCell.textLabel.text = @"Build time:";
+    buildTimeCell.detailTextLabel.text = [dbInfo objectForKey:@"BuildTime"];
+    
+    [self.infoArray addObject:buildTimeCell];
+    
+    
 }
 
 - (void)viewDidUnload
@@ -96,21 +120,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    // Configure the cell...
-    NSDictionary *d = (NSDictionary *)[self.infoArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [d objectForKey:@"text"];
-    cell.detailTextLabel.text = [d objectForKey:@"detailText"];
-    
-    return cell;
+{    
+    return [self.infoArray objectAtIndex:indexPath.row];
 }
 
 /*

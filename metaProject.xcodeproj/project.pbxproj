@@ -20,6 +20,8 @@
 		9C0B2565179197AB00472670 /* metaProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2564179197AB00472670 /* metaProjectTests.m */; };
 		9C0B25741791992400472670 /* DebugTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B25731791992400472670 /* DebugTableViewController.m */; };
 		9C0B25751791992400472670 /* DebugTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B25731791992400472670 /* DebugTableViewController.m */; };
+		9CB5D9F11791AF4800A56E51 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB5D9F01791AF4800A56E51 /* Constants.m */; };
+		9CB5D9F21791AF4800A56E51 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB5D9F01791AF4800A56E51 /* Constants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		9C0B2564179197AB00472670 /* metaProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = metaProjectTests.m; sourceTree = "<group>"; };
 		9C0B25721791992400472670 /* DebugTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugTableViewController.h; sourceTree = "<group>"; };
 		9C0B25731791992400472670 /* DebugTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugTableViewController.m; sourceTree = "<group>"; };
+		9CB5D9EF1791AF4800A56E51 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		9CB5D9F01791AF4800A56E51 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,8 @@
 				9C0B2540179197AB00472670 /* Supporting Files */,
 				9C0B25721791992400472670 /* DebugTableViewController.h */,
 				9C0B25731791992400472670 /* DebugTableViewController.m */,
+				9CB5D9EF1791AF4800A56E51 /* Constants.h */,
+				9CB5D9F01791AF4800A56E51 /* Constants.m */,
 			);
 			path = metaProject;
 			sourceTree = "<group>";
@@ -271,6 +277,7 @@
 				9C0B2546179197AB00472670 /* main.m in Sources */,
 				9C0B254A179197AB00472670 /* AppDelegate.m in Sources */,
 				9C0B25741791992400472670 /* DebugTableViewController.m in Sources */,
+				9CB5D9F11791AF4800A56E51 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +287,7 @@
 			files = (
 				9C0B2565179197AB00472670 /* metaProjectTests.m in Sources */,
 				9C0B25751791992400472670 /* DebugTableViewController.m in Sources */,
+				9CB5D9F21791AF4800A56E51 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +441,7 @@
 				9C0B256A179197AB00472670 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9C0B256B179197AB00472670 /* Build configuration list for PBXNativeTarget "metaProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -441,6 +450,7 @@
 				9C0B256D179197AB00472670 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
