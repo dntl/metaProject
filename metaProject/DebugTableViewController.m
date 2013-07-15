@@ -73,15 +73,32 @@
     
     [self.infoArray addObject:[self cellWithText:@"Commit hash:" detailText:[dbInfo objectForKey:@"CommitHash"]]];
     [self.infoArray addObject:[self cellWithText:@"Commit date:" detailText:[dbInfo objectForKey:@"CommitDate"]]];
-    [self.infoArray addObject:[self cellWithText:@"Committer name:" detailText:[dbInfo objectForKey:@"CommitterName"]]];
-    [self.infoArray addObject:[self cellWithText:@"Committer email:" detailText:[dbInfo objectForKey:@"CommitterEmail"]]];
+    [self.infoArray addObject:[self cellWithText:@"User name:" detailText:[dbInfo objectForKey:@"GitUserName"]]];
+    [self.infoArray addObject:[self cellWithText:@"User email:" detailText:[dbInfo objectForKey:@"GitUserEmail"]]];
     [self.infoArray addObject:[self cellWithText:@"Branch status:" detailText:[dbInfo objectForKey:@"BranchStatus"]]];
-    [self.infoArray addObject:[self cellWithText:@"Release notices:" detailText:@""]];
+    [self.infoArray addObject:[self cellWithText:@"Build config:" detailText:[dbInfo objectForKey:@"BuildConfiguration"]]];
+    
+    UITableViewCell *cell = [self cellWithText:@"" detailText:@""];
+    //cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, 100);
+    [self.infoArray addObject:cell];
     
     NSArray *notices = [dbInfo objectForKey:@"Notices"];
+    UITextView *textView = [UITextView new];
+    textView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 100);
+
+    NSString *allNotices = [NSString new];
+    allNotices = @"Release notices:\n\n";
     
     for (NSString* s in notices)
-        [self.infoArray addObject:[self cellWithText:@"" detailText:s]];   
+    {
+        //[self.infoArray addObject:[self cellWithText:@"" detailText:s]];
+        allNotices = [NSString stringWithFormat:@"%@*    %@\n", allNotices, s];
+    }
+    
+    textView.text = allNotices;
+    
+    [cell addSubview:textView];
+    cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, textView.frame.size.height);
     
     [self.infoArray addObject:[self cellWithText:@"Build time:" detailText:[dbInfo objectForKey:@"BuildTime"]]];
 }
@@ -155,6 +172,16 @@
 {
     // Return the number of sections.
     return 1;
+}
+
+
+//==============================================================================
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.infoArray objectAtIndex:indexPath.row];
+    return  cell.frame.size.height;
 }
 
 
