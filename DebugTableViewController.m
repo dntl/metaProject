@@ -48,7 +48,7 @@
 
 - (UITableViewCell *)cellWithText:(NSString *)text detailText:(NSString *)detail
 {
-    UITableViewCell *cell = [UITableViewCell emptyCellForTableView:self.tableView];
+    UITableViewCell *cell = [self emptyCellForTableView:self.tableView];
     cell.textLabel.text = text ? text : @"N/A";
     cell.detailTextLabel.text = detail ? detail : @"N/A";
     return cell;
@@ -222,6 +222,21 @@
      */
 }
 
+
+//==============================================================================
+
+- (UITableViewCell *)emptyCellForTableView:(UITableView *)tableView
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.text = @"";
+        cell.detailTextLabel.text = @"";
+    }
+    return cell;
+}
 
 //==============================================================================
 
