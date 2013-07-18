@@ -16,10 +16,6 @@
 
 //==============================================================================
 
-@synthesize infoArray = _infoArray;
-
-//==============================================================================
-
 - (id)init
 {
     self = [super init];
@@ -34,12 +30,17 @@
 //==============================================================================
 
 
-- (void)didReceiveMemoryWarning
+- (UITableViewCell *)emptyCellForTableView:(UITableView *)tableView
 {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.text = @"";
+        cell.detailTextLabel.text = @"";
+    }
+    return cell;
 }
 
 
@@ -66,41 +67,37 @@
 {
     [super viewDidLoad];
     
-    self.infoArray = [NSMutableArray array];
+    _infoArray = [NSMutableArray array];
     
     NSString *infoPlistPath = [NSBundle.mainBundle pathForResource:@"debugInfo" ofType:@"plist"];
     NSDictionary *dbInfo = [NSDictionary dictionaryWithContentsOfFile:infoPlistPath];
     
-    [self.infoArray addObject:[self cellWithText:@"Commit hash:" detailText:[dbInfo objectForKey:@"CommitHash"]]];
-    [self.infoArray addObject:[self cellWithText:@"Commit date:" detailText:[dbInfo objectForKey:@"CommitDate"]]];
-    [self.infoArray addObject:[self cellWithText:@"User name:" detailText:[dbInfo objectForKey:@"GitUserName"]]];
-    [self.infoArray addObject:[self cellWithText:@"User email:" detailText:[dbInfo objectForKey:@"GitUserEmail"]]];
-    [self.infoArray addObject:[self cellWithText:@"Branch status:" detailText:[dbInfo objectForKey:@"BranchStatus"]]];
-    [self.infoArray addObject:[self cellWithText:@"Build config:" detailText:[dbInfo objectForKey:@"BuildConfiguration"]]];
+    [_infoArray addObject:[self cellWithText:@"Commit hash:" detailText:[dbInfo objectForKey:@"CommitHash"]]];
+    [_infoArray addObject:[self cellWithText:@"Commit date:" detailText:[dbInfo objectForKey:@"CommitDate"]]];
+    [_infoArray addObject:[self cellWithText:@"Builded by:" detailText:[dbInfo objectForKey:@"GitUserName"]]];
+    [_infoArray addObject:[self cellWithText:@"Email:" detailText:[dbInfo objectForKey:@"GitUserEmail"]]];
+    [_infoArray addObject:[self cellWithText:@"Branch status:" detailText:[dbInfo objectForKey:@"BranchStatus"]]];
+    [_infoArray addObject:[self cellWithText:@"Build config:" detailText:[dbInfo objectForKey:@"BuildConfiguration"]]];
     
     UITableViewCell *cell = [self cellWithText:@"" detailText:@""];
-    //cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, 100);
-    [self.infoArray addObject:cell];
+    [_infoArray addObject:cell];
     
     NSArray *notices = [dbInfo objectForKey:@"Notices"];
     UITextView *textView = [UITextView new];
-    textView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 100);
+    textView.frame = cell.bounds;
 
     NSString *allNotices = [NSString new];
     allNotices = @"Release notices:\n\n";
     
     for (NSString* s in notices)
-    {
-        //[self.infoArray addObject:[self cellWithText:@"" detailText:s]];
         allNotices = [NSString stringWithFormat:@"%@*    %@\n", allNotices, s];
-    }
     
     textView.text = allNotices;
     
     [cell addSubview:textView];
     cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, textView.frame.size.height);
     
-    [self.infoArray addObject:[self cellWithText:@"Build time:" detailText:[dbInfo objectForKey:@"BuildTime"]]];
+    [_infoArray addObject:[self cellWithText:@"Build date:" detailText:[dbInfo objectForKey:@"BuildTime"]]];
 }
 
 
@@ -180,7 +177,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.infoArray objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [_infoArray objectAtIndex:indexPath.row];
     return  cell.frame.size.height;
 }
 
@@ -191,7 +188,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.infoArray.count;
+    return _infoArray.count;
 }
 
 
@@ -200,7 +197,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    return [self.infoArray objectAtIndex:indexPath.row];
+    return [_infoArray objectAtIndex:indexPath.row];
 }
 
 
@@ -225,19 +222,6 @@
 
 //==============================================================================
 
-- (UITableViewCell *)emptyCellForTableView:(UITableView *)tableView
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.text = @"";
-        cell.detailTextLabel.text = @"";
-    }
-    return cell;
-}
+@end
 
 //==============================================================================
-
-@end
