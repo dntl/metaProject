@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A4F7A5B179859D900031D36 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A4F7A5A179859D900031D36 /* Default-568h@2x.png */; };
 		2A5B036B17957B92003F75CF /* DebugTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B036A17957B92003F75CF /* DebugTableViewController.m */; };
 		9C0B253A179197AB00472670 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0B2539179197AB00472670 /* UIKit.framework */; };
 		9C0B253C179197AB00472670 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0B253B179197AB00472670 /* Foundation.framework */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A4F7A5A179859D900031D36 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2A5B036917957B92003F75CF /* DebugTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugTableViewController.h; sourceTree = SOURCE_ROOT; };
 		2A5B036A17957B92003F75CF /* DebugTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugTableViewController.m; sourceTree = SOURCE_ROOT; };
 		9C0B2535179197AB00472670 /* metaProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = metaProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +81,7 @@
 		9C0B252A179197AB00472670 = {
 			isa = PBXGroup;
 			children = (
+				2A4F7A5A179859D900031D36 /* Default-568h@2x.png */,
 				9C0B253F179197AB00472670 /* metaProject */,
 				9C0B255D179197AB00472670 /* metaProjectTests */,
 				9C0B2538179197AB00472670 /* Frameworks */,
@@ -220,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C0B2544179197AB00472670 /* InfoPlist.strings in Resources */,
+				2A4F7A5B179859D900031D36 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +262,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "bash getDebugInfo.sh";
+			shellScript = "bash ${PROJECT_DIR}/getDebugInfo.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
