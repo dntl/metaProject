@@ -74,7 +74,7 @@
     
     [_infoArray addObject:[self cellWithText:@"Commit hash:" detailText:[dbInfo objectForKey:@"CommitHash"]]];
     [_infoArray addObject:[self cellWithText:@"Commit date:" detailText:[dbInfo objectForKey:@"CommitDate"]]];
-    [_infoArray addObject:[self cellWithText:@"Builded by:" detailText:[dbInfo objectForKey:@"GitUserName"]]];
+    [_infoArray addObject:[self cellWithText:@"Built by:" detailText:[dbInfo objectForKey:@"GitUserName"]]];
     [_infoArray addObject:[self cellWithText:@"Email:" detailText:[dbInfo objectForKey:@"GitUserEmail"]]];
     [_infoArray addObject:[self cellWithText:@"Branch status:" detailText:[dbInfo objectForKey:@"BranchStatus"]]];
     [_infoArray addObject:[self cellWithText:@"Build config:" detailText:[dbInfo objectForKey:@"BuildConfiguration"]]];
