@@ -4,12 +4,15 @@ m_files=( $(find ./${PRODUCT_NAME} -name '*.m') )
 
 lines=0
 ifs=0
-for i in ${m_files[@]}; do 
+unsign=0
+for i in ${m_files[@]}; do
 lines=$(( $lines + $(wc -l < $i) ))
 ifs=$(( $ifs + $(grep -o " if " $i | wc -l) ))
+unsign=$(( $unsign + $(sed -n -e '/^\/\//p' $i | wc -l) ))
+unsign=$(( $unsign + $(grep -c ^$ $i) ))
 done
 
-if_coef='<key>IfCoef</key><string>'$(bc <<<"scale=4;$ifs/$lines")'</string>'
+if_coef='<key>IfCoef</key><string>'$(bc <<<"scale=4;$ifs/($lines-$unsign)")'</string>'
 
 commit=$(git log --pretty=format:'%H' -n 1)
 commit_date='<key>CommitDate</key><string>'$(git log -n 1 --format='%cd')'</string>'
