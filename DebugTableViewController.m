@@ -78,6 +78,7 @@
     [_infoArray addObject:[self cellWithText:@"Email:" detailText:[dbInfo objectForKey:@"GitUserEmail"]]];
     [_infoArray addObject:[self cellWithText:@"Branch status:" detailText:[dbInfo objectForKey:@"BranchStatus"]]];
     [_infoArray addObject:[self cellWithText:@"Build config:" detailText:[dbInfo objectForKey:@"BuildConfiguration"]]];
+    [_infoArray addObject:[self cellWithText:@"The \"IF\" coefficient:" detailText:[dbInfo objectForKey:@"IfCoef"]]];
     
     UITableViewCell *cell = [self cellWithText:@"" detailText:@""];
     [_infoArray addObject:cell];
