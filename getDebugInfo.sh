@@ -8,7 +8,7 @@ unsign=0
 for i in ${m_files[@]}; do
 lines=$(( $lines + $(wc -l < $i) ))
 ifs=$(( $ifs + $(grep -o " if " $i | wc -l) ))
-unsign=$(( $unsign + $(sed -n -e '/^\/\//p' $i | wc -l) ))
+unsign=$(( $unsign + $(sed -n -e '/^[ \t]*\/\//p' $i | wc -l) ))
 unsign=$(( $unsign + $(grep -c ^$ $i) ))
 done
 
