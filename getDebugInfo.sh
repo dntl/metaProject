@@ -1,5 +1,16 @@
 #!/bin/sh
 
+m_files=( $(find ./${PRODUCT_NAME} -name '*.m') )
+
+lines=0
+ifs=0
+for i in ${m_files[@]}; do 
+lines=$(( $lines + $(wc -l < $i) ))
+ifs=$(( $ifs + $(grep -o " if " $i | wc -l) ))
+done
+
+if_coef='<key>IfCoef</key><string>'$(bc <<<"scale=4;$ifs/$lines")'</string>'
+
 commit=$(git log --pretty=format:'%H' -n 1)
 commit_date='<key>CommitDate</key><string>'$(git log -n 1 --format='%cd')'</string>'
 
@@ -51,6 +62,6 @@ fi
 
 configuration='<key>BuildConfiguration</key><string>'${CONFIGURATION}'</string>'
 
-echo $xml_head'<dict><key>CommitHash</key><string>'$commit'</string>'$commit_date$committer_name$committer_email$build_time$isClean$configuration$notices_array'</dict></plist>'  | xmllint --format -  >debugInfo.plist
+echo $xml_head'<dict><key>CommitHash</key><string>'$commit'</string>'$commit_date$committer_name$committer_email$build_time$isClean$configuration$if_coef$notices_array'</dict></plist>'  | xmllint --format -  >debugInfo.plist
 
 cp debugInfo.plist ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/debugInfo.plist
