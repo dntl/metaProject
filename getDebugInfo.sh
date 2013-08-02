@@ -17,7 +17,7 @@ if_coef='<key>IfCoef</key><string>'$(bc <<<"scale=4;$ifs/($lines-$unsign)")'</st
 commit=$(git log --pretty=format:'%H' -n 1)
 commit_date='<key>CommitDate</key><string>'$(git log -n 1 --format='%cd')'</string>'
 
-build_tags=( $(git tag | grep "build_\.*") )
+build_tags=( $(git tag | grep "$1\.*") )
 
 from=$commit
 to=$(git rev-list --max-parents=0 HEAD)
