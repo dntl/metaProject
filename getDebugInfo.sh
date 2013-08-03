@@ -44,7 +44,7 @@ notices_array='<key>Notices</key><array>'
 
 for var in "${notices[@]}"
 do
-current_notice=$(git log --format=%B -n 1 ${var})
+current_notice=$(git log --format=%B -n 1 ${var} | sed "s/\&/\&amp;/;s/>/\&gt;/;s/</\&lt;/;s/'/\&apos;/g")
 notices_array=$notices_array'<string>'$current_notice'</string>'
 done
 
