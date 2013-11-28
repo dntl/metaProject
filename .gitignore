@@ -1,5 +1,2 @@
 .DS_Store
-*.xcworkspace
-project.xcworkspace/
-xcuserdata/
 debuginfo.plist
