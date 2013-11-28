@@ -24,9 +24,12 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testIfExist
 {
-    STFail(@"Unit tests are not implemented yet in metaProjectTests");
+    NSString *infoPlistPath = [NSBundle.mainBundle pathForResource:@"debugInfo" ofType:@"plist"];
+    NSDictionary *dbInfo = [NSDictionary dictionaryWithContentsOfFile:infoPlistPath];
+    
+    STAssertNotNil(dbInfo,@"Main info dictionary must be not nil!");
 }
 
 @end
