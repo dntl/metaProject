@@ -87,8 +87,7 @@
     UITextView *textView = [UITextView new];
     textView.frame = cell.bounds;
 
-    NSString *allNotices = [NSString new];
-    allNotices = @"Release notices:\n\n";
+    NSString *allNotices = @"Release notices:\n\n";
     
     for (NSString* s in notices)
         allNotices = [NSString stringWithFormat:@"%@*    %@\n", allNotices, s];
