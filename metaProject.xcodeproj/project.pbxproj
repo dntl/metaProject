@@ -250,7 +250,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/xcrun -sdk iphoneos PackageApplication -v ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app --sign ${CODE_SIGN_IDENTITY} -o ${PROJECT_DIR}/${PRODUCT_NAME}.ipa --embed /Library/Server/Xcode/Data/ProvisioningProfiles/${PROVISIONING_PROFILE}.mobileprovision";
+			shellScript = "/usr/bin/xcrun -sdk iphoneos PackageApplication -v \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}\".app --sign \"${CODE_SIGN_IDENTITY}\" -o \"${PROJECT_DIR}/${PRODUCT_NAME}\".ipa --embed /Library/Server/Xcode/Data/ProvisioningProfiles/\"${PROVISIONING_PROFILE}\".mobileprovision";
 		};
 		9C0B2554179197AB00472670 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
