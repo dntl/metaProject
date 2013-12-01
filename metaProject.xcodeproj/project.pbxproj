@@ -162,6 +162,7 @@
 				9C0B2532179197AB00472670 /* Frameworks */,
 				9C0B2533179197AB00472670 /* Resources */,
 				9C0B257617919CD700472670 /* ShellScript */,
+				8409F3B0184B649300881AE1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -238,6 +239,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8409F3B0184B649300881AE1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#/usr/bin/xcrun -sdk iphoneos PackageApplication -v ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app --sign ${CODE_SIGN_IDENTITY} -o ${PROJECT_DIR}/${PRODUCT_NAME}.ipa --embed /Library/Server/Xcode/Data/ProvisioningProfiles/${PROVISIONING_PROFILE}.mobileprovision";
+		};
 		9C0B2554179197AB00472670 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
