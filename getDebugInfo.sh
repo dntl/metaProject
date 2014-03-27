@@ -55,6 +55,9 @@ xml_head='<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple
 committer_name='<key>GitUserName</key><string>'$(git config user.name)'</string>'
 committer_email='<key>GitUserEmail</key><string>'$(git config user.email)'</string>'
 build_time='<key>BuildTime</key><string>'$(date +"%Y-%m-%d %H:%M:%S")'</string>'
+version_num='<key>VersionNumber</key><string>'$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${PROJECT_DIR}/${INFOPLIST_FILE}")'</string>'
+
+
 
 diff=$(git status --porcelain)
 if [ ${#diff} -gt 0 ]; then
@@ -65,6 +68,6 @@ fi
 
 configuration='<key>BuildConfiguration</key><string>'${CONFIGURATION}'</string>'
 
-echo $xml_head'<dict><key>CommitHash</key><string>'$commit'</string>'$commit_date$committer_name$committer_email$build_time$isClean$configuration$if_coef$notices_array'</dict></plist>'  | xmllint --format -  >debugInfo.plist
+echo $xml_head'<dict><key>CommitHash</key><string>'$commit'</string>'$commit_date$committer_name$committer_email$build_time$version_num$isClean$configuration$if_coef$notices_array'</dict></plist>'  | xmllint --format -  >debugInfo.plist
 
-cp debugInfo.plist ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/debugInfo.plist
+cp debugInfo.plist "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/debugInfo.plist"
